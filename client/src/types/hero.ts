@@ -1,8 +1,10 @@
+/** Link metadata for hero CTAs. */
 export type HeroCta = {
   label: string;
   href: string;
 };
 
+/** Primary hero copy and actions. */
 export type HeroContent = {
   name: string;
   role: string;
@@ -13,6 +15,7 @@ export type HeroContent = {
   secondaryCta: HeroCta;
 };
 
+/** One line in the hero snapshot strip. */
 export type HeroSnapshotLine = {
   label: string;
   value: string;

@@ -1,5 +1,6 @@
 import type { SectionIntro } from "./section";
 
+/** Work experience entry. */
 export type ExperienceItem = {
   id: string;
   role: string;
@@ -16,6 +17,7 @@ export type ExperienceItem = {
   };
 };
 
+/** Education or certification entry. */
 export type EducationItem = {
   id: string;
   title: string;
@@ -26,11 +28,13 @@ export type EducationItem = {
   highlights?: string[];
 };
 
+/** Tabs for experience section. */
 export type ExperienceTab = {
   id: "work" | "education";
   label: string;
 };
 
+/** Experience section copy + tabs. */
 export type ExperienceSection = SectionIntro & {
   tabs: ExperienceTab[];
 };
