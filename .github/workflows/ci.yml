@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: pnikolic_dev
+        working-directory: .
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: pnikolic_dev/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install
         run: npm ci
