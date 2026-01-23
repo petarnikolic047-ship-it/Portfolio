@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 import { SectionHeader } from "@/components/SectionHeader";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
+import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
 import { cn } from "@/lib/utils";
 
 type SectionLayoutProps = {

@@ -1,8 +1,8 @@
 import { Briefcase, Camera, Code, Mail, MapPin, type LucideIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { Section } from "@/components/ui/section";
 import { hero, heroSnapshot, socialLinks } from "@/data";
 import type { SocialLink } from "@/types/social";
 import { cn } from "@/lib/utils";

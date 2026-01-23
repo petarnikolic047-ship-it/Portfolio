@@ -1,6 +1,6 @@
 import { SectionLayout } from "@/components/SectionLayout";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { skillCategories, skillsSection } from "@/data";
 
 export default function Skills() {

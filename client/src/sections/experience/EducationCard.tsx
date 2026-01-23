@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
 
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { EducationItem } from "@/types/experience";
 

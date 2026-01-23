@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
-import { Container } from "@/components/ui/Container";
+import { Container } from "@/components/ui/container";
 import { brand, navItems } from "@/data";
 import { cn } from "@/lib/utils";
 
