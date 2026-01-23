@@ -1,0 +1,38 @@
+{
+  "include": ["client/src/**/*"],
+  "exclude": ["node_modules", "build", "dist"],
+  "compilerOptions": {
+    /* Build behaviour */
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
+    "noEmit": true,
+
+    /* Language & module settings */
+    "target": "ES2017",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "downlevelIteration": true,
+
+    /* Strictness & type‑safety */
+    "strict": true,
+    "skipLibCheck": true,
+
+    /* JSX / React */
+    "jsx": "preserve",
+
+    /* Interop & JSON imports */
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+
+    /* Base URL & path aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./client/src/*"]
+    },
+
+    /* Lib definitions & global types */
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "types": ["node", "vite/client", "vitest/globals", "@testing-library/jest-dom"]
+  }
+}
