@@ -18,7 +18,6 @@ export default function WorkEducationEnhanced() {
   const [expandedEducationId, setExpandedEducationId] = useState<string | null>(
     null,
   );
-  const [shouldAnimate, setShouldAnimate] = useState(true);
   const updateHash = (id?: string) => {
     const nextHash = id ? `#experience=${id}` : "#experience";
     if (window.location.hash === nextHash) {
@@ -47,12 +46,6 @@ export default function WorkEducationEnhanced() {
     setExpandedEducationId(id);
     updateHash(id ?? undefined);
   };
-
-  useEffect(() => {
-    setShouldAnimate(false);
-    const id = requestAnimationFrame(() => setShouldAnimate(true));
-    return () => cancelAnimationFrame(id);
-  }, [tab]);
 
   useEffect(() => {
     const syncFromHash = () => {
@@ -111,7 +104,8 @@ export default function WorkEducationEnhanced() {
       </div>
 
       <div
-        className={`mx-auto mt-8 max-w-5xl ${shouldAnimate ? "tab-fade" : ""}`}
+        key={tab}
+        className="mx-auto mt-8 max-w-5xl tab-fade"
         role="tabpanel"
         id={`experience-${tab}`}
       >
