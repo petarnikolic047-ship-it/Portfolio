@@ -120,16 +120,19 @@ export function ExperienceCard({
       {hasStory ? (
         <div
           className={cn(
-            "type-sm overflow-hidden text-white/65 transition-all duration-300",
-            isExpanded ? "max-h-64 opacity-100" : "max-h-0 opacity-0",
+            "type-sm text-white/65 transition-opacity duration-300",
+            isExpanded ? "opacity-100" : "opacity-0",
           )}
           id={`work-story-${item.id}`}
+          aria-hidden={!isExpanded}
         >
-          <div className="space-y-3 pt-2">
-            {item.story?.map((paragraph, index) => (
-              <p key={`${item.id}-story-${index}`}>{paragraph}</p>
-            ))}
-          </div>
+          {isExpanded ? (
+            <div className="space-y-3 pt-2">
+              {item.story?.map((paragraph, index) => (
+                <p key={`${item.id}-story-${index}`}>{paragraph}</p>
+              ))}
+            </div>
+          ) : null}
         </div>
       ) : null}
 
