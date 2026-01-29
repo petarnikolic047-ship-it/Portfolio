@@ -8,7 +8,7 @@ export type ExperienceItem = {
   period: string;
   type?: string;
   bullets: string[];
-  story?: string;
+  story?: string[];
   stack?: string[];
   theme?: {
     eyebrow: string;
@@ -23,8 +23,9 @@ export type EducationItem = {
   title: string;
   institution: string;
   period: string;
-  summary?: string;
-  story?: string;
+  type?: string;
+  bullets: string[];
+  story?: string[];
   highlights?: string[];
 };
 
@@ -37,4 +38,12 @@ export type ExperienceTab = {
 /** Experience section copy + tabs. */
 export type ExperienceSection = SectionIntro & {
   tabs: ExperienceTab[];
+};
+
+export type ExperienceData = {
+  section: ExperienceSection;
+  tabs: {
+    work: ExperienceItem[];
+    education: EducationItem[];
+  };
 };

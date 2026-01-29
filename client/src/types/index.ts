@@ -4,6 +4,7 @@ export type { SocialLink } from "./social";
 export type { HeroCta, HeroContent, HeroSnapshotLine } from "./hero";
 export type {
   EducationItem,
+  ExperienceData,
   ExperienceItem,
   ExperienceSection,
   ExperienceTab,

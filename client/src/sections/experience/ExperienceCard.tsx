@@ -17,26 +17,32 @@ export function ExperienceCard({
   onToggle,
 }: ExperienceCardProps) {
   const isInforce = item.id === "inforce";
+  const hasStory = Boolean(item.story && item.story.length > 0);
   const themeClass = isInforce
     ? "inforce-theme"
     : "rounded-2xl border border-white/10 bg-white/[0.02] p-4";
 
   return (
     <Card
-      role="button"
-      tabIndex={0}
-      aria-expanded={isExpanded}
-      aria-controls={`work-story-${item.id}`}
-      onClick={onToggle}
-      onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          onToggle();
-        }
-      }}
+      role={hasStory ? "button" : undefined}
+      tabIndex={hasStory ? 0 : undefined}
+      aria-expanded={hasStory ? isExpanded : undefined}
+      aria-controls={hasStory ? `work-story-${item.id}` : undefined}
+      onClick={hasStory ? onToggle : undefined}
+      onKeyDown={
+        hasStory
+          ? (event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onToggle();
+              }
+            }
+          : undefined
+      }
       className={cn(
         "space-y-6 shadow-none transition border-white/0",
-        "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
+        hasStory &&
+          "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
         isInforce && "inforce-card",
       )}
     >
@@ -111,27 +117,33 @@ export function ExperienceCard({
         </div>
       ) : null}
 
-      <div
-        className={cn(
-          "type-sm overflow-hidden text-white/70 transition-all duration-300",
-          isExpanded ? "max-h-64 opacity-100" : "max-h-0 opacity-0",
-        )}
-        id={`work-story-${item.id}`}
-      >
-        {item.story ? (
-          <p className="pt-2 leading-relaxed text-white/65">{item.story}</p>
-        ) : null}
-      </div>
-
-      <div className="type-xs flex items-center justify-between uppercase tracking-[0.3em] text-white/45">
-        <span>{isExpanded ? "Collapse" : "View story"}</span>
-        <ChevronDown
+      {hasStory ? (
+        <div
           className={cn(
-            "h-4 w-4 transition-transform",
-            isExpanded && "rotate-180",
+            "type-sm overflow-hidden text-white/65 transition-all duration-300",
+            isExpanded ? "max-h-64 opacity-100" : "max-h-0 opacity-0",
           )}
-        />
-      </div>
+          id={`work-story-${item.id}`}
+        >
+          <div className="space-y-3 pt-2">
+            {item.story?.map((paragraph, index) => (
+              <p key={`${item.id}-story-${index}`}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {hasStory ? (
+        <div className="type-xs flex items-center justify-between uppercase tracking-[0.3em] text-white/45">
+          <span>{isExpanded ? "Collapse" : "View story"}</span>
+          <ChevronDown
+            className={cn(
+              "h-4 w-4 transition-transform",
+              isExpanded && "rotate-180",
+            )}
+          />
+        </div>
+      ) : null}
     </Card>
   );
 }

@@ -16,22 +16,28 @@ export function EducationCard({
   isExpanded,
   onToggle,
 }: EducationCardProps) {
+  const hasStory = Boolean(item.story && item.story.length > 0);
   return (
     <Card
-      role="button"
-      tabIndex={0}
-      aria-expanded={isExpanded}
-      aria-controls={`edu-story-${item.id}`}
-      onClick={onToggle}
-      onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          onToggle();
-        }
-      }}
+      role={hasStory ? "button" : undefined}
+      tabIndex={hasStory ? 0 : undefined}
+      aria-expanded={hasStory ? isExpanded : undefined}
+      aria-controls={hasStory ? `edu-story-${item.id}` : undefined}
+      onClick={hasStory ? onToggle : undefined}
+      onKeyDown={
+        hasStory
+          ? (event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onToggle();
+              }
+            }
+          : undefined
+      }
       className={cn(
         "space-y-4 shadow-none transition border-white/0",
-        "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
+        hasStory &&
+          "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
       )}
     >
       <div className="space-y-1">
@@ -44,21 +50,35 @@ export function EducationCard({
         <p className="type-sm text-white/70">{item.institution}</p>
       </div>
 
-      {item.summary ? (
-        <p className="type-sm text-white/65">{item.summary}</p>
+      {item.bullets.length > 0 ? (
+        <ul className="type-sm space-y-3 text-white/65">
+          {item.bullets.map((bullet, index) => (
+            <li key={`${item.id}-summary-${index}`} className="flex gap-3">
+              <span
+                aria-hidden
+                className="mt-2 h-1.5 w-1.5 rounded-full bg-white/30"
+              />
+              <p>{bullet}</p>
+            </li>
+          ))}
+        </ul>
       ) : null}
 
-      <div
-        className={cn(
-          "type-sm overflow-hidden text-white/65 transition-all duration-300",
-          isExpanded ? "max-h-40 opacity-100" : "max-h-0 opacity-0",
-        )}
-        id={`edu-story-${item.id}`}
-      >
-        {item.story ? (
-          <p className="pt-2 leading-relaxed text-white/65">{item.story}</p>
-        ) : null}
-      </div>
+      {hasStory ? (
+        <div
+          className={cn(
+            "type-sm overflow-hidden text-white/65 transition-all duration-300",
+            isExpanded ? "max-h-40 opacity-100" : "max-h-0 opacity-0",
+          )}
+          id={`edu-story-${item.id}`}
+        >
+          <div className="space-y-3 pt-2">
+            {item.story?.map((paragraph, index) => (
+              <p key={`${item.id}-story-${index}`}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       {item.highlights && item.highlights.length > 0 ? (
         <div className="flex flex-wrap gap-2">
@@ -70,15 +90,17 @@ export function EducationCard({
         </div>
       ) : null}
 
-      <div className="type-xs flex items-center justify-between uppercase tracking-[0.3em] text-white/45">
-        <span>{isExpanded ? "Collapse" : "View story"}</span>
-        <ChevronDown
-          className={cn(
-            "h-4 w-4 transition-transform",
-            isExpanded && "rotate-180",
-          )}
-        />
-      </div>
+      {hasStory ? (
+        <div className="type-xs flex items-center justify-between uppercase tracking-[0.3em] text-white/45">
+          <span>{isExpanded ? "Collapse" : "View story"}</span>
+          <ChevronDown
+            className={cn(
+              "h-4 w-4 transition-transform",
+              isExpanded && "rotate-180",
+            )}
+          />
+        </div>
+      ) : null}
     </Card>
   );
 }

@@ -14,7 +14,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0),rgba(0,0,0,0.35))]" />
       </div>
       <Navbar />
-      <main>
+      <main className="pt-24 md:pt-28">
         <Hero />
         <WorkEducationEnhanced />
         <Skills />

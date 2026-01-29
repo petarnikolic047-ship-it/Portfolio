@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { SectionLayout } from "@/components/SectionLayout";
-import { experienceEducation, experienceSection, experienceWork } from "@/data";
+import { experienceData } from "@/data";
 import { EducationGrid } from "@/sections/experience/EducationGrid";
 import { ExperienceList } from "@/sections/experience/ExperienceList";
 import { ExperienceTabs } from "@/sections/experience/ExperienceTabs";
@@ -9,8 +9,10 @@ import type { ExperienceTab } from "@/types/experience";
 
 type TabId = ExperienceTab["id"];
 
-const workIds = new Set(experienceWork.map((item) => item.id));
-const educationIds = new Set(experienceEducation.map((item) => item.id));
+const workIds = new Set(experienceData.tabs.work.map((item) => item.id));
+const educationIds = new Set(
+  experienceData.tabs.education.map((item) => item.id),
+);
 
 export default function WorkEducationEnhanced() {
   const [tab, setTab] = useState<TabId>("work");
@@ -90,16 +92,16 @@ export default function WorkEducationEnhanced() {
     <SectionLayout
       id="experience"
       titleId="experience-title"
-      pill={experienceSection.eyebrow}
-      title={experienceSection.title}
-      description={experienceSection.description}
+      pill={experienceData.section.eyebrow}
+      title={experienceData.section.title}
+      description={experienceData.section.description}
       className="relative overflow-hidden"
     >
       <div className="mt-6 flex justify-center">
         <ExperienceTabs
           value={tab}
           onChange={handleTabChange}
-          tabs={experienceSection.tabs}
+          tabs={experienceData.section.tabs}
         />
       </div>
 
@@ -111,13 +113,13 @@ export default function WorkEducationEnhanced() {
       >
         {tab === "work" ? (
           <ExperienceList
-            items={experienceWork}
+            items={experienceData.tabs.work}
             expandedId={expandedWorkId}
             onToggle={handleWorkToggle}
           />
         ) : (
           <EducationGrid
-            items={experienceEducation}
+            items={experienceData.tabs.education}
             expandedId={expandedEducationId}
             onToggle={handleEducationToggle}
           />

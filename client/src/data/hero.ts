@@ -7,7 +7,7 @@ export const positioning =
   "Software engineer building enterprise insurance systems (Oracle PL/SQL) and modern React/TypeScript frontends.";
 
 export const hero: HeroContent = {
-  name: "Petar Nikolic",
+  name: "Petar Nikolić",
   role: "Software / Configuration Engineer - Enterprise Insurance Systems",
   tagline: "Enterprise insurance systems | Transactional workflows | Data integrity",
   summary:
