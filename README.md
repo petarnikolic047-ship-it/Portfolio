@@ -30,6 +30,12 @@ npm run lint
 npm run test
 ```
 
+## Preview
+
+```
+npm run preview
+```
+
 ## Build
 
 ```
